@@ -1,0 +1,39 @@
+export default function Dashboard() {
+    return (
+        <div className="dashboard p2">
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+            <h1>Home</h1>
+        </div>
+    );
+}

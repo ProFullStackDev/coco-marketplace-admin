@@ -1,0 +1,49 @@
+.sign {
+    background-color: var(--secondary);
+    border-radius: 5px;
+    padding: 3rem;
+
+    div:nth-child(2) {
+        gap: 20px;
+
+        input {
+            height: 3rem;
+        }
+    }
+
+    div:nth-child(3) {
+        padding: 20px 0;
+    }
+
+    a {
+        color: var(--primary);
+        transition: 0.3s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}
+
+.btn-primary {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 10px;
+    color: var(--font-white-color);
+    text-align: center;
+    width: 100%;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: 0.4s;
+
+    &:hover {
+        background-color: transparent;
+    }
+}

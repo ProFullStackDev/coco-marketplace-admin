@@ -1,0 +1,15 @@
+/** ---------- Main Content Style  ---------- */
+.content {
+    min-height: 100vh;
+    background: var(--dark);
+    transition: 0.5s;
+    margin-left: 250px;
+
+    @media screen and (max-width: 992px) {
+        margin-left: 0 !important;
+    }
+}
+
+/** ---------- Dashboard Style  ---------- */
+.dashboard {
+}

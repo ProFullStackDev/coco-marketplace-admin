@@ -1,0 +1,101 @@
+.header {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    width: 100%;
+    background: var(--secondary);
+    color: black;
+    padding: 0 1.5rem;
+
+    .navbar {
+        width: 100%;
+        padding: 12px 0;
+        display: flex;
+        justify-content: baseline;
+        align-items: center;
+
+        > button {
+            min-width: 40px;
+            min-height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark);
+            border-radius: 50%;
+            color: var(--primary);
+            outline: none;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        > span {
+            input {
+                margin-left: 1.25rem;
+            }
+
+            @media screen and (max-width: 768px) {
+                input {
+                    display: none;
+                }
+            }
+        }
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+
+            > button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                color: var(--light);
+                background: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                &:hover {
+                    color: var(--primary);
+                }
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+            }
+
+            div {
+                display: none;
+                position: absolute;
+                top: 125%;
+                background-color: var(--secondary);
+                padding: 15px 0px;
+
+                a {
+                    display: block;
+                    width: 100%;
+                    padding: 0.5rem 1.5rem;
+                    font-weight: 400;
+                    color: var(--light);
+                    text-align: inherit;
+                    white-space: nowrap;
+                    background-color: transparent;
+                    border: 0;
+
+                    &:hover {
+                        background: var(--dark);
+                    }
+                }
+            }
+        }
+    }
+}
