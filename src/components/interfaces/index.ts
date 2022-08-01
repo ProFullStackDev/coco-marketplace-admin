@@ -46,9 +46,9 @@ export interface AttrCardObject {
 
 /** Usertable interface */
 export interface DataRow {
-    title: string;
-    director: string;
-    year: string;
+    image: string;
+    name: string;
+    email: string;
 }
 
 /** Auth Interface */

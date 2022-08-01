@@ -28,7 +28,7 @@ export default function SelectCollection() {
                 {currentItem !== null
                     ? currentItem.items.map((item: any, index: number) => (
                           <div
-                              className="col-sm-12 col-md-6 col-lg-4 col-xl-2 p1"
+                              className="col-sm-12 col-md-6 col-lg-4 col-xl-3 p1"
                               key={index}
                           >
                               <div

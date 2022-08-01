@@ -4,38 +4,30 @@ import DataTable, {
     createTheme,
 } from "react-data-table-component";
 import { FaArrowDown } from "react-icons/fa";
+import { useGlobalContext } from "../context";
 import { DataRow } from "../components/interfaces";
 import ExpandedComponent from "../components/UserDetail";
 import CustomLoader from "../components/Spinner";
 
 const columns: TableColumn<DataRow>[] = [
     {
-        name: "Title",
-        selector: (row: any) => row.title,
+        name: "Avatar",
+        selector: (row): any => (
+            <img src={row.image} alt="" className="userLogo" />
+        ),
+    },
+    {
+        name: "Name",
+        selector: (row): any => row.name,
         sortable: true,
+        style: {
+            width: "0px",
+        },
     },
     {
-        name: "Director",
-        selector: (row: any) => row.director,
+        name: "Email",
+        selector: (row): any => row.email,
         sortable: true,
-    },
-    {
-        name: "Year",
-        selector: (row: any) => row.year,
-        sortable: true,
-    },
-];
-
-const data = [
-    {
-        title: "Beetlejuice",
-        year: "1988",
-        director: "Tim Burton",
-    },
-    {
-        title: "The Cotton Club",
-        year: "1984",
-        director: "Francis Ford Coppola",
     },
 ];
 
@@ -84,14 +76,21 @@ const customStyles = {
 };
 
 export default function AllUser() {
+    const [state, {}]: any = useGlobalContext();
     const [loading, setLoading] = useState(false);
+    const [data, setData]: any = useState([]);
 
     useEffect(() => {
         setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 2000);
-    }, []);
+
+        let bump: any = [];
+        Object.keys(state.usersInfo).map((item) => {
+            bump.push(state.usersInfo[item]);
+        });
+        setData(bump);
+
+        setLoading(false);
+    }, [state.usersInfo]);
 
     return (
         <div className="alluser">

@@ -107,6 +107,7 @@ const GET_USERSINFO = gql`
             backgroundimage
             follow
             description
+            privateKey
         }
     }
 `;
