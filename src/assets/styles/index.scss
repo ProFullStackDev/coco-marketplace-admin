@@ -1,4 +1,3 @@
-@import "./global";
 @import "./style";
 @import "./components/sidebar";
 @import "./components/header";
@@ -21,6 +20,31 @@
     margin-left: 0px !important;
 }
 
+// Custom Toastify Style
+.Toastify__toast-body {
+    font-size: 18px;
+    width: 100%;
+    font-weight: bolder;
+}
+.Toastify__toast--success {
+    border: 1px solid var(--toastify-color-success) !important;
+    color: var(--toastify-color-success) !important;
+    text-shadow: 0 0 20px var(--toastify-color-success);
+    background: rgba(7, 188, 12, 0.15) !important;
+}
+.Toastify__toast--warning {
+    border: 1px solid var(--toastify-color-warning) !important;
+    color: var(--toastify-color-warning) !important;
+    text-shadow: 0 0 20px var(--toastify-color-warning);
+    background: rgba(241, 195, 15, 0.15) !important;
+}
+.Toastify__toast--error {
+    border: 1px solid var(--toastify-color-error) !important;
+    color: var(--toastify-color-error) !important;
+    text-shadow: 0 0 20px var(--toastify-color-error);
+    background: rgba(231, 76, 60, 0.15) !important;
+}
+
 // Common Components
 .form-control {
     display: block;
@@ -28,7 +52,6 @@
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     outline: none;
-    font-weight: 400;
     line-height: 1.5;
     color: #6c7293;
     background-color: #000;

@@ -1,14 +1,25 @@
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
+import { useGlobalContext } from "../../context";
 
 import user from "../../assets/images/user.jpg";
 
 export default function Header(props: any) {
     const { ToggleSidebar } = props;
+    const [, { dispatch }]: any = useGlobalContext();
     const [flag, setFlag] = useState(false);
 
     const ToggleActive = () => {
         setFlag(!flag);
+    };
+
+    const Logout = async () => {
+        dispatch({
+            type: "auth",
+            payload: {
+                isAuth: false,
+            },
+        });
     };
 
     return (
@@ -35,9 +46,9 @@ export default function Header(props: any) {
                             flag ? { display: "block" } : { display: "none" }
                         }
                     >
-                        <a href="#">My Profile</a>
-                        <a href="#">Settings</a>
-                        <a href="#">Log Out</a>
+                        <button>My Profile</button>
+                        <button>Settings</button>
+                        <button onClick={Logout}>Log Out</button>
                     </div>
                 </div>
             </nav>
