@@ -26,20 +26,23 @@ export default function SelectCollection() {
         <div className="p2">
             <div className="row m0">
                 {currentItem !== null
-                    ? currentItem.items.map((item: number, index: number) => (
+                    ? currentItem.items.map((item: any, index: number) => (
                           <div
                               className="col-sm-12 col-md-6 col-lg-4 col-xl-2 p1"
                               key={index}
                           >
                               <div
                                   onClick={() =>
-                                      Handle(item.toString(), index.toString())
+                                      Handle(
+                                          item.collectionAddress,
+                                          item.tokenID
+                                      )
                                   }
                               >
                                   <ItemCard
-                                      image="image"
-                                      desc="This is mock descrition"
-                                      title="item"
+                                      image={item.metadata.image}
+                                      desc=""
+                                      title={item.metadata.name}
                                   />
                               </div>
                           </div>

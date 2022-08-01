@@ -28,6 +28,8 @@ export interface CollectioCardObject {
     title: string;
     author: string;
     desc: string;
+    id: number;
+    count: number;
 }
 
 /** ItemCard interface */

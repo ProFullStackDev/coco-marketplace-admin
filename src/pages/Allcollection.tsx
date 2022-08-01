@@ -29,6 +29,8 @@ export default function AllCollection() {
                                 }
                                 title={item.metadata.name}
                                 desc={item.metadata.description}
+                                id={index}
+                                count={item.items.length}
                             />
                         </div>
                     </div>
