@@ -69,22 +69,22 @@ export default function ItemDetail() {
                     <div className="col-sm-12 col-md-6 p3">
                         <img src={itemData.metadata.image} alt="" />
                         <div className="social-link">
-                            {itemData?.metadata?.external_url1 != "" && (
+                            {itemData?.metadata?.external_url1 !== "" && (
                                 <a href={itemData?.metadata?.external_url1}>
                                     <FaTwitterSquare />
                                 </a>
                             )}
-                            {itemData.metadata.external_url2 != "" && (
+                            {itemData.metadata.external_url2 !== "" && (
                                 <a href={itemData?.metadata?.external_url2}>
                                     <FaFacebookSquare />
                                 </a>
                             )}
-                            {itemData.metadata.external_url3 != "" && (
+                            {itemData.metadata.external_url3 !== "" && (
                                 <a href={itemData?.metadata?.external_url3}>
                                     <FaInstagramSquare />
                                 </a>
                             )}
-                            {itemData.metadata.external_url4 != "" && (
+                            {itemData.metadata.external_url4 !== "" && (
                                 <a href={itemData?.metadata?.external_url4}>
                                     <FaPinterestSquare />
                                 </a>
@@ -184,12 +184,12 @@ export default function ItemDetail() {
                                 <div>
                                     <img
                                         src={
-                                            state.usersInfo[itemData?.creator]
+                                            state.usersInfo[itemData?.owner]
                                                 ?.image === undefined
                                                 ? state.collectionNFT[0]
                                                       .metadata.image
                                                 : state.usersInfo[
-                                                      itemData?.creator
+                                                      itemData?.owner
                                                   ].image
                                         }
                                         alt=""
@@ -197,9 +197,9 @@ export default function ItemDetail() {
                                 </div>
                                 <div>
                                     <span className="text-light">
-                                        {itemData.creator.slice(0, 10) +
+                                        {itemData.owner.slice(0, 10) +
                                             "..." +
-                                            itemData.creator.slice(-10)}
+                                            itemData.owner.slice(-10)}
                                     </span>
                                 </div>
                             </div>

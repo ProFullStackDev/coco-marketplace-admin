@@ -46,7 +46,7 @@ function reducer(state: any, { type, payload }) {
 
 const Currency = [
     {
-        label: "BNB",
+        label: "ETH",
         value: addresses.WETH,
     },
     {

@@ -6,7 +6,7 @@ import user from "../../assets/images/user.jpg";
 
 export default function Header(props: any) {
     const { ToggleSidebar } = props;
-    const [, { dispatch }]: any = useGlobalContext();
+    const [state, { dispatch }]: any = useGlobalContext();
     const [flag, setFlag] = useState(false);
 
     const ToggleActive = () => {
@@ -38,7 +38,7 @@ export default function Header(props: any) {
                 <div>
                     <button onClick={ToggleActive}>
                         <img src={user} alt="" />
-                        <span>John Doe</span>
+                        <span>{state.auth.name}</span>
                     </button>
 
                     <div
