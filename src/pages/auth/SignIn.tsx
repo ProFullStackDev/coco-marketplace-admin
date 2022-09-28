@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthObject } from "../../components/interfaces";
 import Action from "../../services";
 import { Toast } from "../../utils/message";
@@ -7,8 +7,7 @@ import { useGlobalContext } from "../../context";
 
 export default function Login() {
     const navigate = useNavigate();
-    // const location = useLocation();
-    const [, { UpdateAuth }]: any = useGlobalContext();
+    const [state, { UpdateAuth }]: any = useGlobalContext();
     const [authData, setAuthData] = useState<AuthObject>({
         email: "",
         password: "",
@@ -95,10 +94,12 @@ export default function Login() {
                                 Sign In
                             </button>
                         </div>
-                        <p className="text-center">
-                            Don't have an Account?{" "}
-                            <Link to="/register">Sign Up</Link>
-                        </p>
+
+                        {!state.signFlag && (
+                            <p className="text-center">
+                                Welcome <Link to="/register">Sign Up</Link>
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

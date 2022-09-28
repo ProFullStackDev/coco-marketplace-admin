@@ -67,6 +67,16 @@ const PrivateRoute: React.FC<Props> = ({ component: RouteComponent }) => {
     return <RouteComponent />;
 };
 
+const FilterRoute: React.FC<Props> = ({ component: RouteComponent }) => {
+    const [state]: any = useGlobalContext();
+
+    if (state.signFlag) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return <RouteComponent />;
+};
+
 const client = new ApolloClient({
     uri: process.env.REACT_APP_GRAPQLENDPOINT,
     cache: new InMemoryCache(),
@@ -80,7 +90,10 @@ export default function App() {
                     <Routes>
                         {/* Auth Routes */}
                         <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route
+                            path="/register"
+                            element={<FilterRoute component={Register} />}
+                        />
 
                         {/* Private Routes */}
                         <Route path="/" element={<SubApp />}>

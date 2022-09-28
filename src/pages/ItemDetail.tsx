@@ -12,7 +12,6 @@ import AttrItem from "../components/AttrCard";
 import Spinner from "../components/Spinner";
 
 export default function ItemDetail() {
-    const navigate = useNavigate();
     const { collection, id } = useParams();
     const [state, { GetCurrency }]: any = useGlobalContext();
     const [correctCollection, setCorrectCollection] = useState(null);
@@ -60,39 +59,47 @@ export default function ItemDetail() {
                 }, 1000);
     }, [itemData]);
 
+    const HandleRemove = async () => {};
+
     return (
         <div className="row m0 itemdetail">
             {correctCollection === null ? (
                 <Spinner />
             ) : (
                 <>
-                    <div className="col-sm-12 col-md-6 p3">
-                        <img src={itemData.metadata.image} alt="" />
-                        <div className="social-link">
-                            {itemData?.metadata?.external_url1 !== "" && (
-                                <a href={itemData?.metadata?.external_url1}>
-                                    <FaTwitterSquare />
-                                </a>
-                            )}
-                            {itemData.metadata.external_url2 !== "" && (
-                                <a href={itemData?.metadata?.external_url2}>
-                                    <FaFacebookSquare />
-                                </a>
-                            )}
-                            {itemData.metadata.external_url3 !== "" && (
-                                <a href={itemData?.metadata?.external_url3}>
-                                    <FaInstagramSquare />
-                                </a>
-                            )}
-                            {itemData.metadata.external_url4 !== "" && (
-                                <a href={itemData?.metadata?.external_url4}>
-                                    <FaPinterestSquare />
-                                </a>
-                            )}
+                    <div className="col-sm-12 col-md-5 p3">
+                        <div>
+                            <img
+                                src={itemData.metadata.image}
+                                alt=""
+                                className="item_image"
+                            />
+                            <div className="social-link">
+                                {itemData?.metadata?.external_url1 !== "" && (
+                                    <a href={itemData?.metadata?.external_url1}>
+                                        <FaTwitterSquare />
+                                    </a>
+                                )}
+                                {itemData.metadata.external_url2 !== "" && (
+                                    <a href={itemData?.metadata?.external_url2}>
+                                        <FaFacebookSquare />
+                                    </a>
+                                )}
+                                {itemData.metadata.external_url3 !== "" && (
+                                    <a href={itemData?.metadata?.external_url3}>
+                                        <FaInstagramSquare />
+                                    </a>
+                                )}
+                                {itemData.metadata.external_url4 !== "" && (
+                                    <a href={itemData?.metadata?.external_url4}>
+                                        <FaPinterestSquare />
+                                    </a>
+                                )}
+                            </div>
                         </div>
                     </div>
 
-                    <div className="col-sm-12 col-md-6 p2">
+                    <div className="col-sm-12 col-md-7 p2">
                         <div>
                             {itemData?.marketdata?.endTime === "" ? null : (
                                 <>
@@ -135,24 +142,25 @@ export default function ItemDetail() {
                                             </div>
                                         )}
                                     </span>
-                                    <h3 className="text-primary">
-                                        {itemData.marketdata.price === ""
-                                            ? null
-                                            : itemData.marketdata.price +
-                                              " " +
-                                              GetCurrency(
-                                                  itemData.marketdata
-                                                      .acceptedToken
-                                              ).label}
-                                    </h3>
-                                    <hr />
                                 </>
                             )}
                             <h3>{itemData.metadata.name || "unknown"}</h3>
-
                             <p style={{ wordBreak: "break-all" }}>
-                                {itemData.metadata.description}
+                                {itemData.metadata.description || ""}
                             </p>
+                            <h3 className="text-primary">
+                                {itemData.marketdata.price === ""
+                                    ? "Not listed for sale"
+                                    : itemData.marketdata.price +
+                                      " " +
+                                      GetCurrency(
+                                          itemData.marketdata.acceptedToken
+                                      ).label}
+                            </h3>
+
+                            <button onClick={HandleRemove}>Remove</button>
+                            <div className="spacer-half"></div>
+                            <hr />
 
                             <h5 className="mb1">Creator</h5>
                             <div className="item_author">

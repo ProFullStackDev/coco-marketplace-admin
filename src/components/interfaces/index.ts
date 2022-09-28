@@ -12,6 +12,7 @@ export interface StoreObject {
     };
     lang: string;
     pageIndex: number;
+    signFlag: boolean;
 }
 
 /** Sidebarlist interface */

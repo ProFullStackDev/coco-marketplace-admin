@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthObject } from "../../components/interfaces";
 import Action from "../../services";
 import { Toast } from "../../utils/message";
 
 export default function Register() {
+    const navigate = useNavigate();
     const [authData, setAuthData] = useState<AuthObject>({
         name: "",
         email: "",
@@ -50,6 +51,7 @@ export default function Register() {
                 default:
                     break;
             }
+            navigate("/login");
         } catch (err) {
             Toast("Network Error", "error");
         }

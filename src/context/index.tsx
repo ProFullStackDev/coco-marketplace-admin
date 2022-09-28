@@ -4,6 +4,7 @@ import {
     useReducer,
     useMemo,
     useEffect,
+    useLayoutEffect,
 } from "react";
 import decode from "jwt-decode";
 import { useQuery } from "@apollo/client";
@@ -17,6 +18,7 @@ import {
 import addresses from "../contract/addresses.json";
 import { translations } from "../components/language/translate";
 import { StoreObject } from "../components/interfaces";
+import Action from "../services";
 
 const INIT_STATE: StoreObject = {
     auth: {
@@ -29,6 +31,7 @@ const INIT_STATE: StoreObject = {
     allNFT: [],
     collectionNFT: [],
     usersInfo: {},
+    signFlag: false,
 };
 
 const App = createContext({});
@@ -57,6 +60,22 @@ const Currency = [
 
 export default function Provider({ children }) {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
+    useLayoutEffect(() => {
+        (async () => {
+            try {
+                const result = await Action.Admin_check();
+                if (result.code === 200) {
+                    dispatch({
+                        type: "signFlag",
+                        payload: result.result,
+                    });
+                }
+            } catch (err: any) {
+                console.log(err.message);
+            }
+        })();
+    }, []);
 
     useEffect(() => {
         let savedLang: any = localStorage.getItem("lang");
