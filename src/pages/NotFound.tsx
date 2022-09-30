@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 
 export default function NotFound() {
@@ -16,7 +17,11 @@ export default function NotFound() {
                             exist in our website! Maybe go to our home page or
                             try to use a search?
                         </p>
-                        <button className="btn-primary">Go Back To Home</button>
+                        <Link to="/">
+                            <button className="btn-primary">
+                                Go Back To Home
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

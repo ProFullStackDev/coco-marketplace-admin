@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Provider, { useGlobalContext } from "./context";
-import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 
 /** ---------- Begin Pages ---------- */
 // normal pages
@@ -19,6 +18,7 @@ import SelectCollection from "./pages/SelectCollection";
 import AllUser from "./pages/Allusers";
 import ProfitChart from "./pages/Profitchat";
 import Setting from "./pages/Setting";
+import Alladmins from "./pages/Alladmins";
 
 import ItemDetail from "./pages/ItemDetail";
 
@@ -54,10 +54,12 @@ const PrivateRoute: React.FC<Props> = ({ component: RouteComponent }) => {
             dispatch({ type: "pageIndex", payload: 2 });
         if (location.pathname.includes("/alluser"))
             dispatch({ type: "pageIndex", payload: 3 });
-        if (location.pathname.includes("/profitchart"))
+        if (location.pathname.includes("/admin-manage"))
             dispatch({ type: "pageIndex", payload: 4 });
-        if (location.pathname.includes("/setting"))
-            dispatch({ type: "pageIndex", payload: 5 });
+        // if (location.pathname.includes("/profitchart"))
+        //     dispatch({ type: "pageIndex", payload: 4 });
+        // if (location.pathname.includes("/setting"))
+        //     dispatch({ type: "pageIndex", payload: 5 });
     }, [location.pathname]);
 
     if (!state.auth.isAuth) {
@@ -77,77 +79,67 @@ const FilterRoute: React.FC<Props> = ({ component: RouteComponent }) => {
     return <RouteComponent />;
 };
 
-const client = new ApolloClient({
-    uri: process.env.REACT_APP_GRAPQLENDPOINT,
-    cache: new InMemoryCache(),
-});
-
 export default function App() {
     return (
-        <ApolloProvider client={client}>
-            <Provider>
-                <Router>
-                    <Routes>
-                        {/* Auth Routes */}
-                        <Route path="/login" element={<Login />} />
+        <Provider>
+            <Router>
+                <Routes>
+                    {/* Auth Routes */}
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                        path="/register"
+                        element={<FilterRoute component={Register} />}
+                    />
+
+                    {/* Private Routes */}
+                    <Route path="/" element={<SubApp />}>
                         <Route
-                            path="/register"
-                            element={<FilterRoute component={Register} />}
+                            index
+                            element={<PrivateRoute component={Dashboard} />}
                         />
+                        <Route
+                            path="/allnft"
+                            element={<PrivateRoute component={AllNFT} />}
+                        />
+                        <Route
+                            path="/allcollection"
+                            element={<PrivateRoute component={AllCollection} />}
+                        />
+                        <Route
+                            path="/allcollection/:collection"
+                            element={
+                                <PrivateRoute component={SelectCollection} />
+                            }
+                        />
+                        <Route
+                            path="/item/:collection/:id"
+                            element={<PrivateRoute component={ItemDetail} />}
+                        />
+                        <Route
+                            path="/alluser"
+                            element={<PrivateRoute component={AllUser} />}
+                        />
+                        {/* <Route
+                            path="/admin-manage"
+                            element={<PrivateRoute component={Alladmins} />}
+                        /> */}
+                        <Route path="/admin-manage" element={<Alladmins />} />
+                        <Route
+                            path="/profitchart"
+                            element={<PrivateRoute component={ProfitChart} />}
+                        />
+                        <Route
+                            path="/setting"
+                            element={<PrivateRoute component={Setting} />}
+                        />
+                    </Route>
 
-                        {/* Private Routes */}
-                        <Route path="/" element={<SubApp />}>
-                            <Route
-                                index
-                                element={<PrivateRoute component={Dashboard} />}
-                            />
-                            <Route
-                                path="/allnft"
-                                element={<PrivateRoute component={AllNFT} />}
-                            />
-                            <Route
-                                path="/allcollection"
-                                element={
-                                    <PrivateRoute component={AllCollection} />
-                                }
-                            />
-                            <Route
-                                path="/allcollection/:collection"
-                                element={
-                                    <PrivateRoute
-                                        component={SelectCollection}
-                                    />
-                                }
-                            />
-                            <Route
-                                path="/item/:collection/:id"
-                                element={
-                                    <PrivateRoute component={ItemDetail} />
-                                }
-                            />
-                            <Route
-                                path="/alluser"
-                                element={<PrivateRoute component={AllUser} />}
-                            />
-                            <Route
-                                path="/profitchart"
-                                element={
-                                    <PrivateRoute component={ProfitChart} />
-                                }
-                            />
-                            <Route
-                                path="/setting"
-                                element={<PrivateRoute component={Setting} />}
-                            />
-                        </Route>
+                    {/* Other Routes */}
+                    <Route path="*" element={<NoPage />} />
+                </Routes>
 
-                        {/* Other Routes */}
-                        <Route path="*" element={<NoPage />} />
-                    </Routes>
-
-                    <ToastContainer />
-                </Router>
-            </Provider>
-        </ApolloProvider>
+                <ToastContainer />
+            </Router>
+        </Provider>
     );
 }

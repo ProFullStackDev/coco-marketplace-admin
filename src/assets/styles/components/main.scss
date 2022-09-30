@@ -243,6 +243,99 @@
             gap: 10px;
         }
     }
+
+    .btnRemoveUser {
+        outline: none;
+        border: 2px solid var(--light);
+        padding: 14px 30px;
+        border-radius: 50px;
+        cursor: pointer;
+        background-color: var(--light);
+        color: var(--font-white-color);
+        transition: 0.3s ease;
+
+        &:hover {
+            background-color: var(--secondary);
+            color: var(--font-white-color);
+        }
+    }
+}
+
+/** ---------- Admin Page Style ---------- */
+.alladmin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .admin_table {
+        padding: 20px;
+        width: 100%;
+
+        .btnRemoveAdmin {
+            outline: none;
+            border: 2px solid var(--light);
+            padding: 10px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            background-color: var(--light);
+            color: var(--font-white-color);
+            transition: 0.3s ease;
+
+            &:hover {
+                background-color: var(--secondary);
+                color: var(--font-white-color);
+            }
+        }
+
+        .not_exist {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            svg {
+                font-size: 40px;
+
+                @media screen and (max-width: 400px) {
+                    font-size: 15vw;
+                }
+            }
+
+            h3 {
+                text-align: center;
+            }
+        }
+
+        table,
+        th,
+        td {
+            border-collapse: collapse;
+            padding: 20px;
+        }
+
+        th {
+            background-color: #2d3241;
+            text-align: left;
+        }
+
+        table {
+            background-color: var(--secondary);
+            width: 100%;
+        }
+    }
 }
 
 /** Profit Chart */

@@ -35,7 +35,13 @@ export default function Header(props: any) {
                         placeholder="Search"
                     />
                 </span>
-                <div>
+                <div
+                    onBlur={() =>
+                        setTimeout(() => {
+                            setFlag(false);
+                        }, 100)
+                    }
+                >
                     <button onClick={ToggleActive}>
                         <img src={user} alt="" />
                         <span>{state.auth.name}</span>
@@ -46,8 +52,8 @@ export default function Header(props: any) {
                             flag ? { display: "block" } : { display: "none" }
                         }
                     >
-                        <button>My Profile</button>
-                        <button>Settings</button>
+                        {/* <button>My Profile</button>
+                        <button>Settings</button> */}
                         <button onClick={Logout}>Log Out</button>
                     </div>
                 </div>

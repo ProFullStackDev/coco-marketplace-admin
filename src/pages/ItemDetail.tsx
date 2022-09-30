@@ -7,12 +7,16 @@ import {
     FaPinterestSquare,
 } from "react-icons/fa";
 import moment from "moment";
+import swal from "sweetalert";
 import { useGlobalContext } from "../context";
 import AttrItem from "../components/AttrCard";
 import Spinner from "../components/Spinner";
+import { ConfirmToast, Toast } from "../utils/message";
+import Action from "../services";
 
 export default function ItemDetail() {
     const { collection, id } = useParams();
+    const navigate = useNavigate();
     const [state, { GetCurrency }]: any = useGlobalContext();
     const [correctCollection, setCorrectCollection] = useState(null);
     const [itemData, setItemData]: any = useState(null);
@@ -59,7 +63,28 @@ export default function ItemDetail() {
                 }, 1000);
     }, [itemData]);
 
-    const HandleRemove = async () => {};
+    const RemoveNFT = async () => {
+        try {
+            const result = await Action.Remove_NFT({
+                collectionAddress: collection || "",
+                nftAddress: id || "",
+            });
+
+            navigate("/allnft");
+
+            if (result.result) {
+                swal("Success! file has been deleted!", {
+                    icon: "success",
+                });
+            }
+        } catch (err: any) {
+            Toast("Failed NFT Remove", "error");
+        }
+    };
+
+    const HandleRemove = async () => {
+        await ConfirmToast(RemoveNFT, "");
+    };
 
     return (
         <div className="row m0 itemdetail">

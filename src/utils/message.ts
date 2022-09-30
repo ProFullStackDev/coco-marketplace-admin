@@ -31,20 +31,18 @@ export const Toast = (message: string, status: string) => {
     }
 };
 
-export const ConfirmToast = () => {
+export const ConfirmToast = async (callbackFunc: any, param: any) => {
     swal({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
-        buttons: [true],
+        buttons: [true, true],
         dangerMode: true,
-    }).then((willDelete) => {
+    }).then(async (willDelete) => {
         if (willDelete) {
-            swal("Poof! Your imaginary file has been deleted!", {
-                icon: "success",
-            });
+            await callbackFunc(param);
         } else {
-            swal("Your imaginary file is safe!");
+            // swal("Your imaginary file is safe!");
         }
     });
 };

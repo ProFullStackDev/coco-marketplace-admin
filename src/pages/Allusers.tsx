@@ -6,30 +6,12 @@ import DataTable, {
 import { FaArrowDown } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { DataRow } from "../components/interfaces";
+import swal from "sweetalert";
 import ExpandedComponent from "../components/UserDetail";
 import CustomLoader from "../components/Spinner";
-
-const columns: TableColumn<DataRow>[] = [
-    {
-        name: "Avatar",
-        selector: (row): any => (
-            <img src={row.image} alt="" className="userLogo" />
-        ),
-    },
-    {
-        name: "Name",
-        selector: (row): any => row.name,
-        sortable: true,
-        style: {
-            width: "0px",
-        },
-    },
-    {
-        name: "Email",
-        selector: (row): any => row.email,
-        sortable: true,
-    },
-];
+import defaultImage from "../assets/images/unknown_user.webp";
+import { ConfirmToast, Toast } from "../utils/message";
+import Action from "../services";
 
 createTheme(
     "solarized",
@@ -80,6 +62,43 @@ export default function AllUser() {
     const [loading, setLoading] = useState(false);
     const [data, setData]: any = useState([]);
 
+    const columns: TableColumn<DataRow>[] = [
+        {
+            name: "Avatar",
+            selector: (row): any => (
+                <img
+                    src={row.image || defaultImage}
+                    alt=""
+                    className="userLogo"
+                />
+            ),
+        },
+        {
+            name: "Name",
+            selector: (row): any => row.name,
+            sortable: true,
+            style: {
+                width: "0px",
+            },
+        },
+        {
+            name: "Email",
+            selector: (row): any => row.email,
+            sortable: true,
+        },
+        {
+            name: "Action",
+            selector: (row): any => (
+                <button
+                    className="btnRemoveUser"
+                    onClick={() => HandleConfirm(row)}
+                >
+                    Remove
+                </button>
+            ),
+        },
+    ];
+
     useEffect(() => {
         setLoading(true);
 
@@ -91,6 +110,26 @@ export default function AllUser() {
 
         setLoading(false);
     }, [state.usersInfo]);
+
+    const HandleRemove = async (item: any) => {
+        try {
+            const result = await Action.Remove_User({
+                address: item.address || "",
+            });
+
+            if (result.result) {
+                swal("Success! file has been deleted!", {
+                    icon: "success",
+                });
+            }
+        } catch (err: any) {
+            Toast("Failed User Remove", "error");
+        }
+    };
+
+    const HandleConfirm = async (item: any) => {
+        await ConfirmToast(HandleRemove, item);
+    };
 
     return (
         <div className="alluser">

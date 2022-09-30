@@ -1,5 +1,5 @@
 export const APISchema = (param: any) => {
-    let token = localStorage.getItem("marketplace_admin_token");
+    let token = localStorage.getItem("market-admin-token");
 
     return {
         method: "POST",

@@ -4,10 +4,9 @@ import {
     useReducer,
     useMemo,
     useEffect,
-    useLayoutEffect,
 } from "react";
 import decode from "jwt-decode";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 
 import {
     GET_ALLNFTS,
@@ -61,7 +60,7 @@ const Currency = [
 export default function Provider({ children }) {
     const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         (async () => {
             try {
                 const result = await Action.Admin_check();
@@ -90,7 +89,9 @@ export default function Provider({ children }) {
         error: nftsError,
     } = useQuery(GET_ALLNFTS, {
         pollInterval: 500,
+        fetchPolicy: "network-only",
     }); // Get All NFTs
+
     useEffect(() => {
         if (nftsLoading || nftsError) {
             return;

@@ -4,6 +4,7 @@ import {
     FaUsers,
     FaRocketchat,
     FaCogs,
+    FaTools,
 } from "react-icons/fa";
 
 export const SidebarList = [
@@ -23,13 +24,18 @@ export const SidebarList = [
         icon: FaUsers,
     },
     {
-        title: "Profit Chart",
-        to: "/profitchart",
-        icon: FaRocketchat,
+        title: "Admins",
+        to: "/admin-manage",
+        icon: FaTools,
     },
-    {
-        title: "Setting",
-        to: "/setting",
-        icon: FaCogs,
-    },
+    // {
+    //     title: "Profit Chart",
+    //     to: "/profitchart",
+    //     icon: FaRocketchat,
+    // },
+    // {
+    //     title: "Setting",
+    //     to: "/setting",
+    //     icon: FaCogs,
+    // },
 ];
